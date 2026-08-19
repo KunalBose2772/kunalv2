@@ -16,8 +16,44 @@ import {
   SiFirebase 
 } from "react-icons/si";
 import { FaAws } from "react-icons/fa6";
+import { BarChart3, Globe, Users, Star } from "lucide-react";
 
 /* Trusted-by marquee — verified technology & payment integration partners with official logos */
+
+const stats = [
+  { 
+    value: "50+", 
+    label: "Projects Delivered", 
+    sub: "Startups & businesses", 
+    icon: BarChart3, 
+    bg: "rgba(6, 182, 212, 0.08)", 
+    color: "#06B6D4" 
+  },
+  { 
+    value: "20+", 
+    label: "Global Clients", 
+    sub: "US, UK, India, UAE", 
+    icon: Globe, 
+    bg: "rgba(14, 165, 233, 0.08)", 
+    color: "#0EA5E9" 
+  },
+  { 
+    value: "5+", 
+    label: "Years Experience", 
+    sub: "Full-stack engineering", 
+    icon: Users, 
+    bg: "rgba(99, 102, 241, 0.08)", 
+    color: "#6366F1" 
+  },
+  { 
+    value: "4.9★", 
+    label: "Client Rating", 
+    sub: "Top-rated consultant", 
+    icon: Star, 
+    bg: "rgba(20, 184, 166, 0.08)", 
+    color: "#14B8A6" 
+  },
+];
 
 interface Company {
   name: string;
@@ -107,12 +143,52 @@ const track = [...companies, ...companies];
 export default function TrustedBy() {
   return (
     <section
-      className="relative pt-10 md:pt-24 pb-10 overflow-hidden"
+      className="relative z-30 pt-12 md:pt-16 pb-10"
       style={{
         background: "#ffffff",
         borderBottom: "1px solid #f1f5f9",
       }}
     >
+      {/* Stats Card Bar */}
+      <div className="max-w-[1480px] mx-auto px-6 md:px-12 -mt-24 md:-mt-28 mb-16 relative z-20">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 bg-white rounded-3xl shadow-[0_24px_50px_rgba(0,0,0,0.06)] border border-slate-100 overflow-hidden divide-y sm:divide-y-0 sm:divide-x divide-slate-100">
+          {stats.map((stat, idx) => {
+            const SIcon = stat.icon;
+            return (
+              <div
+                key={idx}
+                className="flex items-center gap-5 p-6 md:p-7 transition-all duration-300 hover:bg-slate-50/50"
+              >
+                <div
+                  className="w-12 h-12 rounded-2xl flex items-center justify-center shrink-0"
+                  style={{ background: stat.bg }}
+                >
+                  <SIcon className="w-5 h-5" style={{ color: stat.color }} />
+                </div>
+                <div>
+                  <div
+                    className="font-bold text-slate-900 leading-none mb-1.5"
+                    style={{
+                      fontFamily: "Sora, sans-serif",
+                      fontSize: "24px",
+                      letterSpacing: "-0.03em",
+                    }}
+                  >
+                    {stat.value}
+                  </div>
+                  <div className="text-[13px] font-bold text-slate-700 leading-tight">
+                    {stat.label}
+                  </div>
+                  <div className="text-[11px] font-semibold text-slate-400 mt-1 leading-tight">
+                    {stat.sub}
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
       {/* Label */}
       <p className="text-center text-[10px] font-bold uppercase tracking-[0.20em] text-slate-400 mb-7 select-none px-4">
         SUPPORTING SEAMLESS INTEGRATION WITH LEADING PLATFORMS
@@ -120,7 +196,7 @@ export default function TrustedBy() {
 
       {/* Marquee track */}
       <div
-        className="relative"
+        className="relative overflow-hidden"
         style={{
           maskImage:
             "linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%)",

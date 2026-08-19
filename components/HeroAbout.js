@@ -320,7 +320,7 @@ export default function HeroAbout() {
                     {/* Placeholder for the Shared Portrait inside Hero */}
                     <div 
                         id="hero-portrait-placeholder" 
-                        className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full h-[49vh] sm:h-[59vh] lg:h-[74vh] max-w-[270px] sm:max-w-[400px] lg:max-w-[610px] pointer-events-none opacity-0"
+                        className="absolute bottom-[6vh] sm:bottom-0 left-1/2 -translate-x-1/2 w-full h-[52vh] sm:h-[59vh] lg:h-[74vh] max-w-[260px] sm:max-w-[380px] lg:max-w-[610px] pointer-events-none opacity-0"
                     />
 
                     <div className="flex-grow hidden lg:block pointer-events-none" />
@@ -380,7 +380,7 @@ export default function HeroAbout() {
                         
                         {/* Left Column (Heading & Paragraph) */}
                         <motion.div
-                            className="lg:col-span-7 flex flex-col items-start text-left"
+                            className="lg:col-span-7 flex flex-col items-start text-left order-2 lg:order-1"
                             style={{ opacity: aboutOpacity, y: aboutY }}
                         >
                             <span className="text-brand-accent font-semibold tracking-widest uppercase text-xs md:text-sm mb-4 block">
@@ -398,7 +398,7 @@ export default function HeroAbout() {
                         </motion.div>
 
                         {/* Right Column - Transition Image Placeholder */}
-                        <div className="lg:col-span-5 relative w-full flex items-center justify-center pointer-events-none mt-16 lg:mt-0">
+                        <div className="lg:col-span-5 relative w-full flex items-center justify-center pointer-events-none mt-8 lg:mt-0 order-1 lg:order-2">
                             {/* Portrait Placeholder Container */}
                             <div className="relative w-full max-w-[240px] sm:max-w-[360px] lg:max-w-[480px] aspect-[4/5] -translate-y-6 md:-translate-y-8">
                                 {/* Subtle Ambient Glow */}
@@ -498,7 +498,7 @@ export default function HeroAbout() {
 
             {/* Fallback image rendered inline inside the Hero section ONLY during hydration (when dimensions are not calculated yet) */}
             {!dimensions.isReady && (
-                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full h-[49vh] sm:h-[59vh] lg:h-[74vh] max-w-[270px] sm:max-w-[400px] lg:max-w-[610px] z-20 pointer-events-none">
+                <div className="absolute bottom-[6vh] sm:bottom-0 left-1/2 -translate-x-1/2 w-full h-[52vh] sm:h-[59vh] lg:h-[74vh] max-w-[260px] sm:max-w-[380px] lg:max-w-[610px] z-20 pointer-events-none">
                     <div className="relative w-full h-full">
                         <Image
                             src="/hero.png"

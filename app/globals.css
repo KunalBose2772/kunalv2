@@ -298,3 +298,33 @@ html.dark .scan-line {
     transform: translateY(-16px);
   }
 }
+
+/* Badge / Pill */
+.ng-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 14px;
+  border-radius: 100px;
+  border: 1px solid rgba(124, 58, 237, 0.25);
+  background: rgba(124, 58, 237, 0.08);
+  font-family: "Inter", sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  color: #7C3AED;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.ng-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #7C3AED;
+  animation: ng-pulse 2s infinite;
+}
+
+@keyframes ng-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(0.9); }
+}

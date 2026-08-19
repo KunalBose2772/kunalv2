@@ -39,7 +39,7 @@ export default function ContactPage() {
                 />
             </div>
 
-            <div className="max-w-[1280px] mx-auto px-6 relative z-10">
+            <div className="max-w-[1480px] w-full mx-auto px-6 md:px-12 relative z-10">
                 
                 {/* 1. HERO */}
                 <div className="text-center py-12 max-w-3xl mx-auto space-y-4">

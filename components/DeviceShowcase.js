@@ -295,10 +295,10 @@ export default function DeviceShowcase() {
                 />
 
                 {/* Sticky Split Layout Container */}
-                <div className="sticky top-0 h-screen w-full flex items-center justify-center z-10 px-6 md:px-12 lg:px-20 overflow-hidden">
+                <div className="sticky top-0 h-screen w-full flex items-center justify-center z-10 overflow-hidden">
                     <motion.div
                         style={{ opacity: contentOpacity, scale: contentScale }}
-                        className="w-full max-w-6xl grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center"
+                        className="w-full max-w-[1480px] mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center"
                     >
                         {/* Left Column: Heading, Subheading & Stage Indicators */}
                         <div className="col-span-12 lg:col-span-5 flex flex-col justify-center text-left z-20">

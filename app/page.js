@@ -3,9 +3,8 @@ import TrustedBy from "../components/TrustedBy";
 import InlineLeadCapture from "../components/InlineLeadCapture";
 import Work from "../components/Work";
 import DeviceShowcase from "../components/DeviceShowcase";
-import Approach from "../components/Approach";
 import Capabilities from "../components/Capabilities";
-import TechStackUniverse from "../components/TechStackUniverse";
+import TechStack from "../components/TechStack";
 import ClientResults from "../components/ClientResults";
 import BehindTheScreen from "../components/BehindTheScreen";
 import Playground from "../components/Playground";
@@ -20,9 +19,8 @@ export default function Home() {
       <InlineLeadCapture />
       <Work />
       <DeviceShowcase />
-      <Approach />
       <Capabilities />
-      <TechStackUniverse />
+      <TechStack />
       <ClientResults />
       <BehindTheScreen />
       <Playground />
