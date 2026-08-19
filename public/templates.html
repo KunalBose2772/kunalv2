@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LeadMiner Showcase Mockups</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #030712;
+        }
+        .font-mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+    </style>
+</head>
+<body class="p-8 flex flex-col gap-16 items-center">
+
+    <!-- 1. LAPTOP SCREEN (800x500) -->
+    <div id="laptop-screen" class="w-[800px] h-[500px] bg-[#0b0f19] border border-slate-800 rounded-lg flex flex-col overflow-hidden text-slate-300 relative shadow-2xl">
+        <!-- Header -->
+        <div class="h-14 border-b border-slate-800 px-6 flex items-center justify-between bg-[#0e1422]">
+            <div class="flex items-center gap-3">
+                <div class="w-3 h-3 rounded-full bg-blue-500 shadow-[0_0_8px_#3b82f6]"></div>
+                <span class="text-xs font-bold text-white font-mono tracking-widest">LEADMINER</span>
+            </div>
+            <div class="flex items-center gap-6 text-[11px] font-semibold text-slate-400">
+                <span class="text-blue-400 border-b-2 border-blue-500 pb-4 mt-4">Dashboard</span>
+                <span>Scrapers</span>
+                <span>Proxies</span>
+                <span class="px-2.5 py-0.5 rounded bg-blue-500/10 text-blue-400 border border-blue-500/20 text-[10px]">v1.2.4 Active</span>
+            </div>
+        </div>
+
+        <!-- Main Body -->
+        <div class="flex-grow p-6 grid grid-cols-12 gap-5 overflow-hidden">
+            <!-- Left Side: Activity Chart -->
+            <div class="col-span-8 bg-[#111726] rounded-xl border border-slate-850 p-5 flex flex-col justify-between">
+                <div class="flex justify-between items-start">
+                    <div>
+                        <span class="text-[10px] uppercase tracking-wider text-slate-500 font-bold block mb-1">Extraction Activity</span>
+                        <h4 class="text-sm font-bold text-white">Active Scan: Dentist Offices (California)</h4>
+                    </div>
+                    <span class="text-[10px] font-mono text-emerald-400 bg-emerald-400/10 px-2 py-0.5 rounded border border-emerald-500/20">380 leads/min</span>
+                </div>
+                
+                <!-- SVG Chart -->
+                <div class="h-36 w-full relative mt-4">
+                    <svg class="w-full h-full" viewBox="0 0 100 40" preserveAspectRatio="none">
+                        <defs>
+                            <linearGradient id="chartGlow" x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="0%" stop-color="#3B82F6" stop-opacity="0.3" />
+                                <stop offset="100%" stop-color="#3B82F6" stop-opacity="0" />
+                            </linearGradient>
+                        </defs>
+                        <!-- Grid lines -->
+                        <line x1="0" y1="10" x2="100" y2="10" stroke="#1e293b" stroke-width="0.5" stroke-dasharray="2,2" />
+                        <line x1="0" y1="20" x2="100" y2="20" stroke="#1e293b" stroke-width="0.5" stroke-dasharray="2,2" />
+                        <line x1="0" y1="30" x2="100" y2="30" stroke="#1e293b" stroke-width="0.5" stroke-dasharray="2,2" />
+                        <!-- Chart path -->
+                        <path d="M0 35 Q15 25 30 28 T60 12 T90 18 T100 5 L100 40 L0 40 Z" fill="url(#chartGlow)" />
+                        <path d="M0 35 Q15 25 30 28 T60 12 T90 18 T100 5" fill="none" stroke="#3B82F6" stroke-width="1.5" stroke-linecap="round" />
+                    </svg>
+                    <!-- Pulse node -->
+                    <div class="absolute top-[8%] right-[0%] w-3 h-3 rounded-full bg-blue-400 border-2 border-slate-900 shadow-[0_0_8px_#3b82f6] animate-pulse"></div>
+                </div>
+
+                <div class="flex items-center justify-between text-[10px] text-slate-500 font-mono mt-2 pt-2 border-t border-slate-800/60">
+                    <span>Scraper Thread #4: RUNNING</span>
+                    <span>Elapsed: 02h 45m</span>
+                </div>
+            </div>
+
+            <!-- Right Side: Stats -->
+            <div class="col-span-4 flex flex-col gap-4">
+                <div class="bg-[#111726] rounded-xl border border-slate-850 p-4 flex flex-col justify-between flex-grow">
+                    <span class="text-[10px] uppercase tracking-wider text-slate-500 font-bold">Total Scraped</span>
+                    <span class="text-2xl font-bold text-white font-mono my-1">142,504</span>
+                    <span class="text-[10px] text-emerald-400 font-semibold flex items-center gap-1">▲ +12.4% <span class="text-slate-500 font-normal">this wk</span></span>
+                </div>
+                <div class="bg-[#111726] rounded-xl border border-slate-850 p-4 flex flex-col justify-between flex-grow">
+                    <span class="text-[10px] uppercase tracking-wider text-slate-500 font-bold">Proxy Health</span>
+                    <span class="text-2xl font-bold text-emerald-400 font-mono my-1">99.8%</span>
+                    <span class="text-[10px] text-slate-500">45/45 relays online</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 2. TABLET SCREEN (920x680) -->
+    <div id="tablet-screen" class="w-[920px] h-[680px] bg-[#0b0f19] border border-slate-800 rounded-lg flex flex-col overflow-hidden text-slate-300 shadow-2xl">
+        <!-- Tablet Header -->
+        <div class="h-16 border-b border-slate-800 px-8 flex items-center justify-between bg-[#0e1422]">
+            <div class="flex items-center gap-3">
+                <span class="text-sm font-black text-white font-mono tracking-wider">LEADMINER CRM</span>
+            </div>
+            <div class="flex items-center gap-4">
+                <div class="bg-[#151c2d] border border-slate-800 rounded-lg px-4 py-1.5 text-xs text-slate-400 w-64">
+                    Search leads...
+                </div>
+                <span class="text-xs font-bold text-blue-400 bg-blue-500/10 px-3 py-1.5 rounded-lg border border-blue-500/20">All Leads</span>
+            </div>
+        </div>
+
+        <!-- CRM Content -->
+        <div class="flex-grow p-8 flex flex-col gap-6 overflow-hidden">
+            <div class="flex justify-between items-center">
+                <h3 class="text-lg font-bold text-white">Lead Catalog</h3>
+                <span class="text-xs text-slate-500">Showing 142,504 Leads</span>
+            </div>
+
+            <!-- Table -->
+            <div class="flex-grow border border-slate-800 rounded-xl bg-[#111726]/40 overflow-hidden flex flex-col">
+                <div class="grid grid-cols-12 bg-[#0e1422] py-3.5 px-6 border-b border-slate-800 text-[11px] font-bold text-slate-400 uppercase tracking-wider">
+                    <div class="col-span-4">Lead Name</div>
+                    <div class="col-span-3">Business Type</div>
+                    <div class="col-span-3">Location</div>
+                    <div class="col-span-2 text-right">Status</div>
+                </div>
+                
+                <div class="flex-grow flex flex-col overflow-hidden divide-y divide-slate-800/60 text-xs">
+                    <div class="grid grid-cols-12 py-4 px-6 items-center hover:bg-slate-800/10">
+                        <div class="col-span-4 font-semibold text-white flex items-center gap-3">
+                            <div class="w-8 h-8 rounded-full bg-blue-600/20 border border-blue-500/30 flex items-center justify-center font-bold text-blue-400 text-xs">J</div>
+                            Dr. Sarah Jenkins
+                        </div>
+                        <div class="col-span-3 text-slate-400">Dental Clinic</div>
+                        <div class="col-span-3 text-slate-400">San Jose, CA</div>
+                        <div class="col-span-2 text-right">
+                            <span class="px-2.5 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-[10px] font-bold uppercase">Verified</span>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-12 py-4 px-6 items-center hover:bg-slate-800/10">
+                        <div class="col-span-4 font-semibold text-white flex items-center gap-3">
+                            <div class="w-8 h-8 rounded-full bg-purple-600/20 border border-purple-500/30 flex items-center justify-center font-bold text-purple-400 text-xs">C</div>
+                            Dr. Robert Chen
+                        </div>
+                        <div class="col-span-3 text-slate-400">Orthodontics</div>
+                        <div class="col-span-3 text-slate-400">Oakland, CA</div>
+                        <div class="col-span-2 text-right">
+                            <span class="px-2.5 py-0.5 rounded bg-blue-500/10 text-blue-400 border border-blue-500/20 text-[10px] font-bold uppercase">Scraped</span>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-12 py-4 px-6 items-center hover:bg-slate-800/10">
+                        <div class="col-span-4 font-semibold text-white flex items-center gap-3">
+                            <div class="w-8 h-8 rounded-full bg-pink-600/20 border border-pink-500/30 flex items-center justify-center font-bold text-pink-400 text-xs">A</div>
+                            Dr. Amy Adams
+                        </div>
+                        <div class="col-span-3 text-slate-400">Pediatric Dental</div>
+                        <div class="col-span-3 text-slate-400">Berkeley, CA</div>
+                        <div class="col-span-2 text-right">
+                            <span class="px-2.5 py-0.5 rounded bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 text-[10px] font-bold uppercase">Emailed</span>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-12 py-4 px-6 items-center hover:bg-slate-800/10">
+                        <div class="col-span-4 font-semibold text-white flex items-center gap-3">
+                            <div class="w-8 h-8 rounded-full bg-blue-600/20 border border-blue-500/30 flex items-center justify-center font-bold text-blue-400 text-xs">C</div>
+                            Dr. Michael Chang
+                        </div>
+                        <div class="col-span-3 text-slate-400">General Dentistry</div>
+                        <div class="col-span-3 text-slate-400">San Francisco, CA</div>
+                        <div class="col-span-2 text-right">
+                            <span class="px-2.5 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-[10px] font-bold uppercase">Verified</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 3. MOBILE SCREEN (400x820) -->
+    <div id="mobile-screen" class="w-[400px] h-[820px] bg-[#070a13] border border-slate-800 rounded-[48px] flex flex-col overflow-hidden text-slate-300 relative shadow-2xl p-6">
+        <!-- Top notch spacing -->
+        <div class="h-6 flex justify-between items-center px-4 text-[11px] font-bold text-slate-400 select-none">
+            <span>9:41 AM</span>
+            <div class="w-20 h-4 bg-black rounded-full mx-auto"></div>
+            <div class="flex items-center gap-1.5">
+                <span>5G</span>
+                <div class="w-4 h-2.5 border border-slate-400 rounded-sm p-0.5"><div class="h-full w-3 bg-slate-400 rounded-xs"></div></div>
+            </div>
+        </div>
+
+        <div class="flex-grow flex flex-col justify-between py-6 px-3">
+            <!-- App Header -->
+            <div class="flex justify-between items-center pb-4 border-b border-slate-800/60">
+                <span class="text-xs font-black text-white font-mono">LEADMINER AI</span>
+                <span class="text-[9px] uppercase font-bold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">Proxy Active</span>
+            </div>
+
+            <!-- Radar Scanner -->
+            <div class="my-auto flex flex-col items-center gap-8">
+                <!-- Radar Circle Visual -->
+                <div class="w-56 h-56 rounded-full border border-slate-800 flex items-center justify-center relative bg-slate-900/10">
+                    <div class="absolute inset-4 rounded-full border border-slate-800/80"></div>
+                    <div class="absolute inset-10 rounded-full border border-slate-850/60"></div>
+                    <div class="absolute inset-20 rounded-full border border-slate-850/40"></div>
+                    
+                    <!-- Radar sweeping arm -->
+                    <div class="absolute w-1/2 h-0.5 bg-gradient-to-r from-blue-500 to-transparent top-1/2 left-1/2 origin-left -rotate-45"></div>
+                    
+                    <!-- Simulating target nodes -->
+                    <div class="absolute top-12 left-24 w-2 h-2 rounded-full bg-blue-400 shadow-[0_0_8px_#60a5fa]"></div>
+                    <div class="absolute top-28 left-16 w-1.5 h-1.5 rounded-full bg-blue-400 shadow-[0_0_8px_#60a5fa] opacity-60"></div>
+                    <div class="absolute top-36 left-36 w-2 h-2 rounded-full bg-blue-400 shadow-[0_0_8px_#60a5fa]"></div>
+                    
+                    <span class="text-[9px] font-mono text-slate-500 absolute bottom-6 uppercase tracking-wider">Scanning CA Maps...</span>
+                </div>
+
+                <div class="text-center">
+                    <h4 class="text-base font-bold text-white mb-2">Automated Scraper Daemon</h4>
+                    <p class="text-xs text-slate-400 max-w-[240px] mx-auto">
+                        Scanning regional targets and verifying B2B contact lists.
+                    </p>
+                </div>
+
+                <button class="w-full max-w-[200px] bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs uppercase tracking-wider py-3.5 px-6 rounded-xl shadow-[0_0_15px_rgba(59,130,246,0.3)] transition-all">
+                    Start Scraper
+                </button>
+            </div>
+
+            <!-- Stats Block -->
+            <div class="bg-[#111726] border border-slate-800 rounded-2xl p-4 flex justify-between items-center text-left">
+                <div>
+                    <span class="text-[9px] text-slate-500 font-bold uppercase block">Accuracy</span>
+                    <span class="text-sm font-bold text-white font-mono">99.28%</span>
+                </div>
+                <div class="w-px h-8 bg-slate-800"></div>
+                <div>
+                    <span class="text-[9px] text-slate-500 font-bold uppercase block">Proxies</span>
+                    <span class="text-sm font-bold text-emerald-400 font-mono">14 Active</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 4. DASHBOARD SCREEN (840x460) -->
+    <div id="dashboard-screen" class="w-[840px] h-[460px] bg-[#0b0f19] border border-slate-800 rounded-lg flex flex-col overflow-hidden text-slate-300 shadow-2xl">
+        <!-- Safari Wrapper Header -->
+        <div class="bg-[#0e1422] border-b border-slate-800 px-4 py-3 flex items-center gap-3">
+            <div class="flex gap-1.5">
+                <div class="w-3 h-3 rounded-full bg-[#ff5f56]"></div>
+                <div class="w-3 h-3 rounded-full bg-[#ffbd2e]"></div>
+                <div class="w-3 h-3 rounded-full bg-[#27c93f]"></div>
+            </div>
+            <div class="flex-grow max-w-[320px] bg-[#070a13] border border-slate-800 rounded-md px-3 py-1 text-[10px] text-slate-500 font-mono truncate">
+                https://leadminer.ai/admin/console
+            </div>
+        </div>
+
+        <!-- Content -->
+        <div class="flex-grow p-5 grid grid-cols-12 gap-5 overflow-hidden">
+            <!-- Left: Terminal -->
+            <div class="col-span-8 bg-[#05070c] border border-slate-850 rounded-xl p-4 flex flex-col justify-between font-mono text-[11px] leading-relaxed text-slate-400">
+                <div class="flex items-center justify-between border-b border-slate-900 pb-2 mb-2">
+                    <span class="text-[10px] font-bold text-white uppercase tracking-wider">Live System Logs</span>
+                    <div class="flex items-center gap-1.5">
+                        <span class="w-1.5 h-1.5 bg-blue-500 rounded-full animate-ping"></span>
+                        <span class="text-[9px] text-slate-500">Daemon connected</span>
+                    </div>
+                </div>
+
+                <div class="flex-grow flex flex-col gap-1 overflow-hidden select-none text-[10px]">
+                    <p class="text-blue-500">[11:04:12] [SYSTEM] Initializing scraping daemon...</p>
+                    <p class="text-slate-500">[11:04:13] [SYSTEM] Proxy pool: 45 healthy nodes loaded.</p>
+                    <p class="text-slate-300">[11:04:15] [EXTRACT] Dental Clinic: "Apex Care" - SF</p>
+                    <p class="text-slate-500">&gt; Emailed verified: contact@apexcare.com</p>
+                    <p class="text-slate-300">[11:04:16] [EXTRACT] Orthodontist: "Smile Ortho" - SF</p>
+                    <p class="text-emerald-400 font-semibold">[11:04:18] [SUCCESS] Found lead with active contact channels.</p>
+                    <p class="text-slate-300">[11:04:20] [EXTRACT] Pediatric Dental: "Happy Teeth" - SF</p>
+                </div>
+            </div>
+
+            <!-- Right Status -->
+            <div class="col-span-4 flex flex-col gap-4">
+                <div class="bg-[#111726] rounded-xl border border-slate-850 p-4 flex-grow flex flex-col justify-between">
+                    <div>
+                        <span class="text-[9px] uppercase tracking-wider text-slate-500 font-bold block mb-1">Extraction Speed</span>
+                        <span class="text-lg font-bold text-white font-mono">420 leads/min</span>
+                    </div>
+                    <div class="relative w-full h-1.5 bg-slate-800 rounded-full overflow-hidden mt-2">
+                        <div class="absolute left-0 top-0 h-full bg-blue-500 rounded-full w-4/5 shadow-[0_0_6px_rgba(59,130,246,0.6)]"></div>
+                    </div>
+                </div>
+                
+                <div class="bg-[#111726] rounded-xl border border-slate-850 p-4 flex-grow flex flex-col justify-between">
+                    <div>
+                        <span class="text-[9px] uppercase tracking-wider text-slate-500 font-bold block mb-1">Active Scrapers</span>
+                        <span class="text-lg font-bold text-white font-mono">34 Running</span>
+                    </div>
+                    <span class="text-[10px] text-slate-500">Threads active: 34 / 41</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 5. CODE SCREEN (800x450) -->
+    <div id="code-screen" class="w-[800px] h-[450px] bg-[#080c14] border border-slate-800 rounded-lg flex flex-col overflow-hidden text-slate-300 shadow-2xl font-mono text-xs">
+        <!-- Editor Header -->
+        <div class="h-10 bg-[#0e1422] border-b border-slate-850 px-4 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <div class="flex gap-1.5 mr-2">
+                    <div class="w-2.5 h-2.5 rounded-full bg-red-500/80"></div>
+                    <div class="w-2.5 h-2.5 rounded-full bg-yellow-500/80"></div>
+                    <div class="w-2.5 h-2.5 rounded-full bg-green-500/80"></div>
+                </div>
+                <span class="text-[10px] font-bold text-slate-400 bg-[#080c14] border border-slate-800 px-3 py-1 rounded">LeadMiner.js</span>
+            </div>
+            <span class="text-[9px] text-slate-500">React · Javascript</span>
+        </div>
+
+        <div class="flex-grow flex overflow-hidden">
+            <!-- Sidebar Explorer -->
+            <div class="w-[120px] border-r border-slate-850 bg-[#0b0f19] p-3 text-[10px] text-slate-500 flex flex-col gap-2">
+                <span class="font-bold text-slate-400 uppercase tracking-widest text-[8px] mb-1">Explorer</span>
+                <span class="text-white font-semibold flex items-center gap-1">📁 components</span>
+                <span class="pl-3 text-blue-400 font-semibold flex items-center gap-1">📄 LeadMiner.js</span>
+                <span class="pl-3 flex items-center gap-1">📄 Navbar.js</span>
+                <span class="pl-3 flex items-center gap-1">📄 Device.js</span>
+                <span class="font-semibold text-slate-400 flex items-center gap-1">📁 styles</span>
+            </div>
+
+            <!-- Code view -->
+            <div class="flex-grow p-5 leading-relaxed text-slate-400 overflow-hidden relative flex">
+                <!-- Line Numbers -->
+                <div class="text-slate-650 text-right pr-4 border-r border-slate-850/60 w-8 select-none flex flex-col">
+                    <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span><span>11</span>
+                </div>
+                
+                <!-- Code text -->
+                <div class="pl-4 flex flex-col gap-0.5 text-[11px]">
+                    <p><span class="text-pink-500">import</span> React <span class="text-pink-500">from</span> <span class="text-emerald-400">"react"</span>;</p>
+                    <p><span class="text-pink-500">import</span> &#123; motion &#125; <span class="text-pink-500">from</span> <span class="text-emerald-400">"framer-motion"</span>;</p>
+                    <p class="mt-2.5"><span class="text-pink-500">export default function</span> <span class="text-blue-400">CampaignPanel</span>() &#123;</p>
+                    <p class="pl-4"><span class="text-pink-500">return</span> (</p>
+                    <p class="pl-8">&lt;<span class="text-teal-400">div</span> <span class="text-purple-400">className</span>=<span class="text-emerald-400">"bg-slate-900 border border-slate-800"</span>&gt;</p>
+                    <p class="pl-12">&lt;<span class="text-teal-400">ActivityChart</span> <span class="text-purple-400">speed</span>=&#123;<span class="text-amber-500">420</span>&#125; /&gt;</p>
+                    <p class="pl-12">&lt;<span class="text-teal-400">StatsGrid</span> <span class="text-purple-400">total</span>=&#123;<span class="text-amber-500">142504</span>&#125; /&gt;</p>
+                    <p class="pl-8">&lt;/<span class="text-teal-400">div</span>&gt;</p>
+                    <p class="pl-4">);</p>
+                    <p>&#125;</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

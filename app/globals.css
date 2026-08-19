@@ -1,9 +1,11 @@
+@import url("https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap");
 @import "tailwindcss";
 @custom-variant dark (&:is(.dark *));
 
 @theme {
-  --font-sans: var(--font-jost), sans-serif;
+  --font-sans: var(--font-bricolage), sans-serif;
   --font-heading: var(--font-bricolage), sans-serif;
+  --font-serif: var(--font-playfair), serif;
 
   --color-brand-accent: #2563EB;
   --color-brand-hover: #3B82F6;
@@ -11,9 +13,8 @@
 
   --color-bg-light: #ffffff;
   --color-text-light: #020617;
-
-  --color-bg-dark: #0E1116;
-  --color-bg-secondary: #111827;
+  --color-bg-dark: #03050c;
+  --color-bg-secondary: #080c18;
   --color-text-dark: #F8FAFC;
 }
 
@@ -23,12 +24,56 @@
     --foreground: var(--color-text-light);
     --secondary: #E2E8F0;
     --grid-color: rgba(15, 23, 42, 1);
+
+    /* Brand Colors (from modern agency UI) */
+    --bg-primary:       #000000;
+    --bg-surface:       #0A0A0B;
+    --bg-elevated:      #111113;
+
+    --text-primary:     #FFFFFF;
+    --text-secondary:   #94A3B8;
+    --text-muted:       #64748B;
+    --text-faint:       #334155;
+
+    --accent-primary:       #06B6D4;
+    --accent-primary-hover: #0891B2;
+    --accent-primary-dim:   rgba(6, 182, 212, 0.08);
+    --accent-primary-rgb:   6, 182, 212;
+    --accent-primary-dark-rgb: 14, 116, 144;
+
+    --accent-blue:      var(--accent-primary);
+    --accent-blue-hover:var(--accent-primary-hover);
+    --accent-blue-dim:  var(--accent-primary-dim);
+    --accent-cyan:      #00E5FF;
+    --accent-cyan-dim:  rgba(0,229,255,0.08);
+
+    --accent-purple:       #7C3AED;
+    --accent-purple-hover: #6D28D9;
+    --accent-purple-dim:   rgba(124, 58, 237, 0.08);
+
+    --accent-global:       var(--accent-purple);
+    --accent-global-hover: var(--accent-purple-hover);
+    --accent-global-dim:   var(--accent-purple-dim);
+    --accent-global-rgb:   124, 58, 237;
+
+    --border-subtle:    rgba(255,255,255,0.06);
+    --border-default:   rgba(255,255,255,0.08);
+    --border-emphasis:  rgba(6, 182, 212, 0.30);
+
+    /* Shadows */
+    --shadow-card:      0 10px 40px rgba(0,0,0,0.25);
+    --shadow-hover:     0 20px 60px rgba(0,0,0,0.35);
+    --shadow-blue:      0 0 40px rgba(6, 182, 212, 0.12);
+
+    /* Spacing Tokens */
+    --section-pad-y:    clamp(64px, 8vw, 96px);
+    --section-pad-y-sm: clamp(40px, 5vw, 64px);
   }
 
   html.dark {
-    --background: var(--color-bg-dark);
+    --background: #03050c;
     --foreground: var(--color-text-dark);
-    --secondary: var(--color-bg-secondary);
+    --secondary: #080c18;
     --grid-color: rgba(248, 250, 252, 1);
   }
 
@@ -37,20 +82,31 @@
   }
 
   body {
-    background-color: var(--background);
+    background-color: #03050c;
+    background-image: 
+      radial-gradient(at 0% 0%, rgba(59, 130, 246, 0.04) 0px, transparent 50%),
+      radial-gradient(at 100% 0%, rgba(99, 102, 241, 0.04) 0px, transparent 50%),
+      radial-gradient(at 50% 100%, rgba(6, 182, 212, 0.04) 0px, transparent 50%),
+      radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.015) 1px, transparent 0);
+    background-size: 100% 100%, 100% 100%, 100% 100%, 36px 36px;
+    background-attachment: fixed;
     color: var(--foreground);
-    font-family: var(--font-jost), sans-serif;
+    font-family: var(--font-bricolage), sans-serif;
     @apply transition-colors duration-300;
   }
 }
 
 @layer utilities {
   .font-sans {
-    font-family: var(--font-jost), sans-serif !important;
+    font-family: var(--font-bricolage), sans-serif !important;
   }
 
   .font-heading {
     font-family: var(--font-bricolage), sans-serif !important;
+  }
+
+  .font-serif {
+    font-family: var(--font-playfair), serif !important;
   }
 }
 
@@ -69,14 +125,15 @@
 }
 
 .nav-glass {
-  background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.45) 100%);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  background: #0A0E17;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
 }
 
 html.dark .nav-glass {
-  background: rgba(0, 0, 0, 0.65);
+  background: #0A0E17;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
 }
 
 .crystal-border {
@@ -91,23 +148,18 @@ html.dark .crystal-border {
   filter: drop-shadow(0 0 8px rgba(37, 99, 235, 0.6));
 }
 
-.nav-logo img {
-  filter: grayscale(1) brightness(0) contrast(1.15);
-}
-
-html.dark .nav-logo img {
-  filter: none;
-}
-
 .hero-vignette {
-  background:
-    radial-gradient(circle at 50% 32%, rgba(78, 192, 254, 0) 0%, rgba(78, 192, 254, 0) 38%, rgba(78, 192, 254, 0.55) 78%, rgba(78, 192, 254, 0.85) 100%);
-}
-
-html.dark .hero-vignette {
   background:
     radial-gradient(circle at 20% 18%, rgba(37, 99, 235, 0.6), transparent 55%),
     radial-gradient(circle at 78% 0%, rgba(15, 23, 42, 0.96), transparent 70%);
+}
+
+.hero-blue-glow {
+  background: radial-gradient(circle at 50% 55%, rgba(59, 130, 246, 0.45) 0%, rgba(59, 130, 246, 0.2) 30%, rgba(147, 197, 253, 0.08) 60%, transparent 80%), #ffffff;
+}
+
+html.dark .hero-blue-glow {
+  background: radial-gradient(circle at 50% 55%, rgba(37, 99, 235, 0.28) 0%, rgba(79, 70, 229, 0.12) 35%, rgba(15, 23, 42, 0) 70%), #0E1116;
 }
 
 .hero-particles {
@@ -118,14 +170,14 @@ html.dark .hero-vignette {
 }
 
 .hero-particle {
-  position: absolute;
-  width: 6px;
-  height: 6px;
-  border-radius: 999px;
   background: radial-gradient(circle, rgba(148, 163, 184, 0.55), transparent 70%);
   box-shadow:
     0 0 10px rgba(148, 163, 184, 0.55),
     0 0 18px rgba(148, 163, 184, 0.2);
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
 }
 
 html.dark .hero-particle {
@@ -187,5 +239,62 @@ html.dark .scan-line {
 
   100% {
     transform: translateY(110vh);
+  }
+}
+
+/* Custom design system utility additions */
+.font-sora {
+  font-family: "Sora", sans-serif;
+}
+
+.ng-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding-left: 32px;
+  padding-right: 32px;
+}
+
+.ng-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+@media (max-width: 768px) {
+  .ng-container {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+@keyframes ng-marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes float-slow {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes float-y {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-16px);
   }
 }

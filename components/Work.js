@@ -1,216 +1,359 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useState, useEffect, useRef } from "react";
+import { motion, useScroll, useTransform, useSpring, AnimatePresence } from "framer-motion";
 import Image from "next/image";
-import { Terminal, ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Globe, Terminal, Briefcase } from "lucide-react";
 import Link from "next/link";
 
-const SYSTEMS = [
+const PROJECTS = [
     {
         id: "01",
-        title: "Custom WordPress Business Platform",
-        positioning: "Structured CMS architecture for scalable business operations.",
-        overview: "Designed and engineered a custom WordPress solution focused on maintainability, structured theme development, and optimized performance.",
+        number: "01",
+        title: "LeadMiner",
+        subtitle: "AI-powered Google Maps Lead Generation",
+        description: "An intelligent data extraction engine designed to scrape, verify, and structure B2B leads directly from Google Maps. Built for sales automation with built-in email verification and smart filtering.",
         highlights: [
-            "Custom theme engineering (no page builder dependency)",
-            "Modular PHP structure",
-            "Optimized database queries",
-            "SEO and Core Web Vitals optimization",
-            "Secure hosting configuration"
+            "Real-time Puppeteer scrapers with rotating proxies",
+            "FastAPI background task queuing",
+            "Interactive analytics dashboard with Next.js",
+            "CSV/JSON exporter with custom data structuring"
         ],
-        stack: "WordPress · PHP · MySQL · Nginx/Apache",
+        stack: "Next.js · FastAPI · PostgreSQL · Puppeteer",
         image: "/project1.png",
+        link: "https://github.com/KunalBose2772",
+        bg: "#F0F4FF", // Soft Ice Blue
+        textColor: "text-blue-600",
+        tint: "bg-blue-500/10",
+        border: "border-blue-200/50"
     },
     {
         id: "02",
-        title: "SaaS Admin Dashboard",
-        positioning: "Scalable product interface with structured component architecture.",
-        overview: "Developed a dynamic admin dashboard with authentication flow, role-based access, and modular UI components.",
+        number: "02",
+        title: "NextGen Tech",
+        subtitle: "Enterprise Website + CRM",
+        description: "A complete digital infrastructure for enterprise services. Features a customer-facing responsive brand platform tightly integrated with a custom admin CRM, pipeline tracker, and user behavior analytics.",
         highlights: [
-            "Next.js routing architecture",
-            "API-driven UI",
-            "Reusable component system",
-            "State management structure",
-            "Secure session handling"
+            "Full CRM tracking with automated email alerts",
+            "Dynamic client dashboard with role-based access",
+            "Responsive dashboard layouts with drag-and-drop features",
+            "Optimized data querying with MongoDB indexing"
         ],
-        stack: "Next.js · React · REST API · Tailwind CSS",
+        stack: "React.js · Node.js · Express · MongoDB",
         image: "/project2.png",
+        link: "https://github.com/KunalBose2772",
+        bg: "#EDFDF5", // Soft Mint Green
+        textColor: "text-emerald-600",
+        tint: "bg-emerald-500/10",
+        border: "border-emerald-200/50"
     },
     {
         id: "03",
-        title: "PHP Backend Application",
-        positioning: "Structured backend system with clean logic separation.",
-        overview: "Engineered a PHP application with organized controllers, reusable logic layers, and optimized relational database design.",
+        number: "03",
+        title: "Zebir",
+        subtitle: "Premium Fashion Ecommerce",
+        description: "A high-fidelity fashion retail store optimized for luxury brand storytelling. Includes complex animation micro-interactions, robust inventory syncing, and a multi-currency lightning-fast checkout workflow.",
         highlights: [
-            "OOP-based PHP structure",
-            "Relational database schema design",
-            "Secure form handling",
-            "Role-based admin logic",
-            "Performance optimization"
+            "Fluid catalog navigation with Framer Motion",
+            "Headless Shopify API integration",
+            "Secure serverless Stripe checkout",
+            "High Core Web Vitals performance scores"
         ],
-        stack: "Core PHP · MySQL · Server-side Validation",
+        stack: "Next.js · React · Shopify API · Stripe",
         image: "/project1.png",
-    },
-    {
-        id: "04",
-        title: "E-Commerce Prototype (CCL Internship)",
-        positioning: "Frontend-led commerce system with structured UI flow.",
-        overview: "Built an online shopping system with product management, cart flow, and responsive layout during enterprise internship exposure.",
-        highlights: [
-            "Structured product listing logic",
-            "Cart interaction system",
-            "Responsive layout implementation",
-            "Team-led frontend coordination"
-        ],
-        stack: "HTML · CSS · JavaScript · Bootstrap",
-        image: "/project2.png",
-    },
-    {
-        id: "05",
-        title: "Razorpay Integrated Website",
-        positioning: "Production-ready deployment with payment workflow integration.",
-        overview: "Integrated Razorpay payment gateway and structured transaction handling within a deployed website environment.",
-        highlights: [
-            "Payment gateway API integration",
-            "Secure transaction flow",
-            "Deployment workflow understanding",
-            "Hosting & domain configuration"
-        ],
-        stack: "JavaScript · Razorpay API · Hosting Deployment",
-        image: "/project1.png",
+        link: "https://github.com/KunalBose2772",
+        bg: "#FFF5F5", // Soft Rose Blush
+        textColor: "text-rose-600",
+        tint: "bg-rose-500/10",
+        border: "border-rose-200/50"
     }
 ];
 
 export default function Work() {
-    return (
-        <section id="work" className="relative py-10 lg:py-16 border-t border-slate-200/10 z-10 flex flex-col justify-center overflow-hidden">
-            <div className="max-w-[1480px] w-full mx-auto px-6 md:px-12 relative z-10 flex flex-col gap-16 md:gap-[120px]">
+    const containerRef = useRef(null);
+    const [winWidth, setWinWidth] = useState(1200);
 
-                {/* Section Header */}
-                <motion.div
-                    initial={{ opacity: 0, x: -30 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true, margin: "-100px" }}
-                    transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-                    className="flex flex-col md:flex-row md:items-end justify-between gap-6 w-full"
-                >
-                    <div className="flex flex-col items-start text-left">
-                        <span className="text-brand-accent font-semibold tracking-widest uppercase text-xs md:text-sm mb-4 block">
-                            SELECTED SYSTEMS
+    useEffect(() => {
+        setWinWidth(window.innerWidth);
+        const handleResize = () => setWinWidth(window.innerWidth);
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
+
+    // Track scroll progress of the entire section
+    const { scrollYProgress } = useScroll({
+        target: containerRef,
+        offset: ["start start", "end end"]
+    });
+
+    // Custom smooth spring for scroll progress to prevent jitter
+    const smoothProgress = useSpring(scrollYProgress, {
+        damping: 35,
+        stiffness: 150,
+        mass: 0.5
+    });
+
+    // Map scroll progress to project active states
+    const [activeIndex, setActiveIndex] = useState(0);
+
+    useEffect(() => {
+        const unsubscribe = scrollYProgress.on("change", (latest) => {
+            if (latest < 0.35) {
+                setActiveIndex(0);
+            } else if (latest < 0.7) {
+                setActiveIndex(1);
+            } else {
+                setActiveIndex(2);
+            }
+        });
+        return () => unsubscribe();
+    }, [scrollYProgress]);
+
+    // Map scroll progress to container background color transitions (smooth pastel colors)
+    const bgColor = useTransform(
+        smoothProgress,
+        [0, 0.35, 0.7, 1],
+        ["#F0F4FF", "#EDFDF5", "#FFF5F5", "#FFF5F5"]
+    );
+
+    // Mouse movement state for custom cursor & image parallax
+    const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+    const [showCursor, setShowCursor] = useState(false);
+    const [imageOffset, setImageOffset] = useState({ x: 0, y: 0 });
+
+    const handleMouseMove = (e) => {
+        const rect = e.currentTarget.getBoundingClientRect();
+        
+        // Custom cursor pos relative to container
+        const cursorX = e.clientX - rect.left;
+        const cursorY = e.clientY - rect.top;
+        setMousePos({ x: cursorX, y: cursorY });
+
+        // Image parallax calculation (subtle movement relative to center)
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const offsetLimit = 22; // max pixels it can slide
+        const parallaxX = ((e.clientX - rect.left) - centerX) / centerX * offsetLimit;
+        const parallaxY = ((e.clientY - rect.top) - centerY) / centerY * offsetLimit;
+        setImageOffset({ x: parallaxX, y: parallaxY });
+    };
+
+    const handleMouseLeave = () => {
+        setShowCursor(false);
+        setImageOffset({ x: 0, y: 0 });
+    };
+
+    return (
+        <motion.div
+            ref={containerRef}
+            style={{ backgroundColor: bgColor }}
+            className="relative min-h-[300vh] w-full transition-colors duration-700 ease-out select-none"
+        >
+            {/* Sticky Wrapper */}
+            <div className="sticky top-0 h-screen w-full flex flex-col justify-center overflow-hidden z-10">
+                
+                {/* Background Large Number Reveal */}
+                <div className="absolute inset-0 w-full h-full flex items-center justify-center overflow-hidden pointer-events-none z-0">
+                    <AnimatePresence mode="wait">
+                        <motion.span
+                            key={activeIndex}
+                            initial={{ opacity: 0, y: 80, scale: 0.9 }}
+                            animate={{ opacity: 0.1, y: 0, scale: 1 }}
+                            exit={{ opacity: 0, y: -80, scale: 0.9 }}
+                            transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
+                            className="text-[42vw] font-black text-slate-800 tracking-tighter leading-none select-none font-sans"
+                        >
+                            {PROJECTS[activeIndex].number}
+                        </motion.span>
+                    </AnimatePresence>
+                </div>
+
+                <div className="max-w-[1480px] w-full mx-auto px-6 md:px-12 relative z-10 flex flex-col h-[85vh] justify-between pointer-events-none">
+                    
+                    {/* Header */}
+                    <div className="flex flex-row items-center justify-between border-b border-slate-900/10 pb-4 w-full">
+                        <div className="flex items-center gap-3">
+                            <Briefcase className="w-5 h-5 text-slate-700" />
+                            <span className="font-sans font-bold tracking-[0.25em] text-xs uppercase text-slate-800">
+                                SELECTED WORK
+                            </span>
+                        </div>
+                        <span className="font-mono text-xs font-semibold text-slate-500">
+                            {activeIndex + 1} / {PROJECTS.length}
                         </span>
-                        <h2 className="text-[clamp(36px,5vw,64px)] leading-[1.05] font-heading font-bold text-foreground tracking-tight flex flex-wrap gap-3">
-                            Engineered
-                            <span className="text-slate-400 dark:text-slate-500">Case Studies.</span>
-                        </h2>
                     </div>
 
-                    <Link href="/portfolio" className="group flex items-center gap-2 px-6 py-3 md:py-4 rounded-xl border border-slate-200/50 dark:border-white/10 bg-slate-50 hover:bg-white dark:bg-slate-900 dark:hover:bg-slate-800 text-sm md:text-base font-semibold text-foreground transition-all duration-300 shadow-sm hover:shadow-[0_4px_20px_rgba(37,99,235,0.1)]">
-                        View All Work
-                        <ArrowUpRight className="w-4 h-4 md:w-5 md:h-5 text-brand-accent group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform" />
-                    </Link>
-                </motion.div>
-
-                {/* Systems List */}
-                <div className="flex flex-col gap-32 md:gap-[160px] w-full">
-                    {SYSTEMS.map((system, index) => {
-                        const isEven = index % 2 !== 0; // 0 is System 1 (Left Image), 1 is System 2 (Right Image), etc.
-
-                        return (
-                            <div
-                                key={system.id}
-                                className={`flex flex-col lg:items-center ${isEven ? 'lg:flex-row-reverse' : 'lg:flex-row'} gap-12 lg:gap-20 w-full`}
-                            >
-                                {/* Visual Preview Layer */}
+                    {/* Main Story Grid */}
+                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center my-auto w-full">
+                        
+                        {/* Left Column: Project details */}
+                        <div className="lg:col-span-5 flex flex-col justify-center items-start text-left z-20 pointer-events-auto">
+                            <AnimatePresence mode="wait">
                                 <motion.div
-                                    className="w-full lg:w-1/2 relative aspect-[16/10] md:aspect-[4/3] rounded-2xl overflow-hidden border border-slate-200/50 dark:border-white/5 bg-slate-100 dark:bg-slate-900/50 group"
-                                    initial={{ opacity: 0, x: isEven ? 40 : -40 }}
-                                    whileInView={{ opacity: 1, x: 0 }}
-                                    viewport={{ once: true, margin: "-100px" }}
-                                    transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+                                    key={activeIndex}
+                                    initial={{ opacity: 0, x: -30 }}
+                                    animate={{ opacity: 1, x: 0 }}
+                                    exit={{ opacity: 0, x: 20 }}
+                                    transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+                                    className="flex flex-col items-start w-full"
                                 >
-                                    <div className="absolute inset-0 bg-brand-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-10 pointer-events-none" />
-
-                                    <motion.div
-                                        initial={{ scale: 0.98 }}
-                                        whileInView={{ scale: 1 }}
-                                        viewport={{ once: true, margin: "-100px" }}
-                                        transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-                                        className="w-full h-full relative"
-                                    >
-                                        <Image
-                                            src={system.image}
-                                            alt={system.title}
-                                            fill
-                                            className="object-cover object-top opacity-90 grayscale-[20%] group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700"
-                                            sizes="(min-width: 1024px) 50vw, 100vw"
-                                        />
-                                    </motion.div>
-
-                                    {/* Tech corner badge */}
-                                    <div className="absolute top-4 right-4 z-20 bg-white/90 dark:bg-slate-950/90 backdrop-blur-md px-3 py-1.5 rounded-lg border border-slate-200 dark:border-white/10 shadow-sm flex items-center gap-2">
-                                        <Terminal className="w-3.5 h-3.5 text-brand-accent" />
-                                        <span className="text-[10px] uppercase tracking-wider font-mono font-bold text-slate-600 dark:text-slate-400">{system.id}</span>
+                                    <div className={`px-3 py-1 rounded-full ${PROJECTS[activeIndex].tint} ${PROJECTS[activeIndex].border} border mb-4`}>
+                                        <span className={`text-[10px] font-bold uppercase tracking-widest font-mono ${PROJECTS[activeIndex].textColor}`}>
+                                            Project {PROJECTS[activeIndex].id}
+                                        </span>
                                     </div>
-                                </motion.div>
 
-                                {/* Structured Documentation Block */}
-                                <motion.div
-                                    className="w-full lg:w-1/2 flex flex-col items-start"
-                                    initial={{ opacity: 0, y: 30 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true, margin: "-100px" }}
-                                    transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-                                >
-                                    <span className="text-brand-accent font-medium text-sm md:text-base tracking-wide mb-3">
-                                        {system.positioning}
-                                    </span>
-
-                                    <h3 className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-6">
-                                        {system.title}
+                                    <h3 className="text-[clamp(32px,4.5vw,56px)] leading-[1.05] font-heading font-black text-slate-900 mb-2 tracking-tight">
+                                        {PROJECTS[activeIndex].title}
                                     </h3>
 
-                                    <p className="text-slate-600 dark:text-slate-400 text-base md:text-lg leading-relaxed mb-8">
-                                        {system.overview}
+                                    <h4 className="text-lg md:text-xl font-sans font-semibold text-slate-700 mb-5 leading-snug">
+                                        {PROJECTS[activeIndex].subtitle}
+                                    </h4>
+
+                                    <p className="text-slate-600 text-sm md:text-base leading-relaxed mb-6 max-w-md">
+                                        {PROJECTS[activeIndex].description}
                                     </p>
 
-                                    {/* Animated left-to-right divider */}
-                                    <motion.div
-                                        className="w-full h-[1px] bg-slate-200 dark:bg-white/10 mb-8 origin-left"
-                                        initial={{ scaleX: 0 }}
-                                        whileInView={{ scaleX: 1 }}
-                                        viewport={{ once: true, margin: "-100px" }}
-                                        transition={{ duration: 0.8, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                                    />
-
-                                    <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-4 mb-10">
-                                        <div className="col-span-1 md:col-span-2 text-sm font-semibold text-slate-800 dark:text-slate-200 uppercase tracking-widest mb-2">
-                                            Architecture Highlights
-                                        </div>
-                                        {system.highlights.map((highlight, hIndex) => (
-                                            <div key={hIndex} className="flex gap-3 items-start">
-                                                <div className="mt-1.5 w-1.5 h-1.5 rounded-sm bg-brand-accent/60 flex-shrink-0" />
-                                                <span className="text-sm font-medium text-slate-600 dark:text-slate-400 leading-snug">{highlight}</span>
+                                    {/* Architecture list */}
+                                    <div className="flex flex-col gap-2.5 mb-8 w-full max-w-sm">
+                                        {PROJECTS[activeIndex].highlights.map((item, idx) => (
+                                            <div key={idx} className="flex gap-2.5 items-start">
+                                                <div className={`w-1.5 h-1.5 rounded-[3px] mt-1.5 ${PROJECTS[activeIndex].tint} flex-shrink-0`} />
+                                                <span className="text-xs md:text-sm font-medium text-slate-500 leading-snug">{item}</span>
                                             </div>
                                         ))}
                                     </div>
 
-                                    {/* Tech Stack Line */}
-                                    <div className="w-full bg-slate-50 dark:bg-[#0a0f1a] border border-slate-200/50 dark:border-white/5 rounded-xl p-4 flex flex-col md:flex-row md:items-center gap-4">
-                                        <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-slate-400 dark:text-slate-500 whitespace-nowrap">
-                                            Tech Stack
-                                        </span>
-                                        <div className="w-px h-4 bg-slate-300 dark:bg-white/10 hidden md:block" />
-                                        <span className="text-sm font-mono text-brand-accent dark:text-brand-accent/90">
-                                            {system.stack}
-                                        </span>
-                                    </div>
+                                    {/* Footer Details */}
+                                    <div className="flex flex-wrap items-center gap-4 w-full pt-4 border-t border-slate-900/10">
+                                        <div className="flex flex-col">
+                                            <span className="text-[9px] uppercase tracking-widest font-bold text-slate-400 mb-1">Architecture Stack</span>
+                                            <span className="text-xs font-mono text-slate-700">{PROJECTS[activeIndex].stack}</span>
+                                        </div>
 
+                                        <Link
+                                            href={PROJECTS[activeIndex].link}
+                                            target="_blank"
+                                            className="group flex items-center gap-1.5 ml-auto text-xs font-bold uppercase tracking-wider text-slate-800 hover:text-blue-600 transition-colors py-2"
+                                        >
+                                            [Preview]
+                                            <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                                        </Link>
+                                    </div>
+                                </motion.div>
+                            </AnimatePresence>
+                        </div>
+
+                        {/* Right Column: Interaction Visual Area */}
+                        <div className="lg:col-span-7 flex justify-center items-center relative z-20">
+                            
+                            {/* Hover Interactive Area (Pointer events auto) */}
+                            <div
+                                className="relative w-full max-w-[620px] aspect-[16/10] sm:aspect-[4/3] lg:aspect-[16/11] rounded-2xl border border-slate-900/10 shadow-[0_20px_50px_rgba(15,23,42,0.08)] bg-white/70 backdrop-blur-md cursor-none overflow-hidden group pointer-events-auto"
+                                onMouseMove={handleMouseMove}
+                                onMouseEnter={() => setShowCursor(true)}
+                                onMouseLeave={handleMouseLeave}
+                            >
+                                {/* Expanding Visual Screen inside */}
+                                <AnimatePresence mode="wait">
+                                    <motion.div
+                                        key={activeIndex}
+                                        initial={{ opacity: 0, scale: 0.95 }}
+                                        animate={{ opacity: 1, scale: 1 }}
+                                        exit={{ opacity: 0, scale: 0.95 }}
+                                        transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
+                                        className="relative w-full h-full overflow-hidden"
+                                    >
+                                        {/* Browser header bar decoration */}
+                                        <div className="absolute top-0 left-0 right-0 h-6 bg-[#080b11]/5 border-b border-slate-900/5 px-3 flex items-center gap-1 z-30 select-none">
+                                            <div className="w-1.5 h-1.5 rounded-full bg-slate-400/40" />
+                                            <div className="w-1.5 h-1.5 rounded-full bg-slate-400/40" />
+                                            <div className="w-1.5 h-1.5 rounded-full bg-slate-400/40" />
+                                        </div>
+
+                                        {/* Parallax Image wrapper */}
+                                        <motion.div
+                                            style={{
+                                                x: imageOffset.x,
+                                                y: imageOffset.y
+                                            }}
+                                            transition={{ type: "spring", stiffness: 120, damping: 24 }}
+                                            className="relative w-full h-full scale-[1.04] transition-transform duration-700 ease-out group-hover:scale-[1.10] pt-6"
+                                        >
+                                            <Image
+                                                src={PROJECTS[activeIndex].image}
+                                                alt={PROJECTS[activeIndex].title}
+                                                fill
+                                                className="object-cover object-top pt-6"
+                                                sizes="(min-width: 1024px) 50vw, 100vw"
+                                                priority
+                                            />
+                                        </motion.div>
+                                    </motion.div>
+                                </AnimatePresence>
+
+                                {/* Custom Floating "Open Project" Cursor */}
+                                <motion.div
+                                    className="pointer-events-none absolute z-50 bg-slate-900 text-white text-[10px] font-bold uppercase tracking-widest px-4 py-2.5 rounded-full flex items-center gap-1.5 shadow-xl"
+                                    style={{
+                                        left: mousePos.x,
+                                        top: mousePos.y,
+                                        translateX: "-50%",
+                                        translateY: "-50%"
+                                    }}
+                                    animate={{ 
+                                        scale: showCursor ? 1 : 0, 
+                                        opacity: showCursor ? 1 : 0 
+                                    }}
+                                    transition={{ type: "spring", stiffness: 280, damping: 22 }}
+                                >
+                                    Open Project
+                                    <ArrowUpRight className="w-3 h-3 text-brand-accent" />
                                 </motion.div>
                             </div>
-                        );
-                    })}
+                        </div>
+
+                    </div>
+
+                    {/* Footer Progress Indicators */}
+                    <div className="flex flex-row gap-4 items-center justify-start w-full">
+                        {PROJECTS.map((item, idx) => (
+                            <div 
+                                key={idx}
+                                className="flex flex-col gap-1 items-start cursor-pointer pointer-events-auto"
+                                onClick={() => {
+                                    // Smoothly scroll to the corresponding section area
+                                    if (containerRef.current) {
+                                        const containerHeight = containerRef.current.offsetHeight;
+                                        const scrollTarget = containerRef.current.offsetTop + (idx * (containerHeight / PROJECTS.length));
+                                        window.scrollTo({
+                                            top: scrollTarget + 100,
+                                            behavior: "smooth"
+                                        });
+                                    }
+                                }}
+                            >
+                                <span className={`text-[10px] font-mono font-bold transition-all duration-300 ${
+                                    activeIndex === idx ? "text-slate-900" : "text-slate-400"
+                                }`}>
+                                    {item.number}
+                                </span>
+                                <div className="relative w-14 h-1 rounded-full bg-slate-200 overflow-hidden">
+                                    <motion.div
+                                        className="absolute left-0 top-0 h-full bg-slate-900 rounded-full"
+                                        initial={{ width: 0 }}
+                                        animate={{ width: activeIndex === idx ? "100%" : "0%" }}
+                                        transition={{ duration: 0.4 }}
+                                    />
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+
                 </div>
+
             </div>
-        </section>
+        </motion.div>
     );
 }
