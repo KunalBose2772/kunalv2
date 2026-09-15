@@ -1,0 +1,192 @@
+"use client";
+
+import PageHero from "@/components/common/PageHero";
+import { FileText, ShieldAlert, Award, FileSignature } from "lucide-react";
+import { useState, useEffect } from "react";
+
+const sections = [
+  { id: "acceptance", title: "1. Acceptance of Terms" },
+  { id: "services-scope", title: "2. Scope of Services" },
+  { id: "intellectual-property", title: "3. Intellectual Property" },
+  { id: "user-obligations", title: "4. User & Client Obligations" },
+  { id: "payment-billing", title: "5. Invoicing & Payment Terms" },
+  { id: "termination", title: "6. Agreement Termination" },
+  { id: "liability-limits", title: "7. Limitations of Liability" },
+  { id: "dispute-resolution", title: "8. Dispute Resolution" },
+  { id: "contact-support", title: "9. Technical Support & Inquiries" },
+];
+
+export default function TermsPage() {
+  const [activeSection, setActiveSection] = useState("acceptance");
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY + 200;
+      for (const section of sections) {
+        const el = document.getElementById(section.id);
+        if (el) {
+          const { top, bottom } = el.getBoundingClientRect();
+          const absoluteTop = top + window.scrollY;
+          const absoluteBottom = bottom + window.scrollY;
+          if (scrollPosition >= absoluteTop && scrollPosition <= absoluteBottom) {
+            setActiveSection(section.id);
+            break;
+          }
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const scrollToSection = (id: string) => {
+    const el = document.getElementById(id);
+    if (el) {
+      const offset = el.getBoundingClientRect().top + window.scrollY - 120;
+      window.scrollTo({ top: offset, behavior: "auto" });
+    }
+  };
+
+  return (
+    <div className="bg-white min-h-screen text-slate-800">
+      <PageHero
+        badge="Legal & Compliance"
+        title="Terms of Service"
+        titleHighlight="& Agreements"
+        description="Last Updated: June 11, 2026. Review our software development, billing policies, and client specifications."
+        breadcrumbs={[{ label: "Terms of Service" }]}
+      />
+
+      <div className="max-w-7xl mx-auto px-4 py-16">
+        
+        <div className="grid lg:grid-cols-12 gap-12 items-start border-t border-slate-200/60 pt-12">
+          
+          {/* Left Sidebar Table of Contents */}
+          <div className="lg:col-span-4 lg:sticky lg:top-24 space-y-6">
+            <div className="rounded-2xl p-6 border border-slate-200/60 bg-white shadow-sm">
+              <h3 className="text-slate-900 font-bold text-xs uppercase tracking-wider mb-4">
+                Table of Contents
+              </h3>
+              <div className="space-y-1">
+                {sections.map((section) => (
+                  <button
+                    key={section.id}
+                    onClick={() => scrollToSection(section.id)}
+                    className="w-full text-left py-2 px-3 rounded-lg text-xs font-bold transition-all flex items-center justify-between cursor-pointer"
+                    style={{
+                      backgroundColor: activeSection === section.id ? "rgba(59, 130, 246, 0.08)" : "transparent",
+                      color: activeSection === section.id ? "#2563eb" : "#475569",
+                    }}
+                  >
+                    {section.title}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Legal Signing Note */}
+            <div className="rounded-2xl p-6 border border-slate-200/60 bg-white shadow-sm">
+              <div className="w-9 h-9 rounded-lg bg-amber-50 border border-amber-100/30 flex items-center justify-center mb-3">
+                <FileSignature className="w-4 h-4 text-amber-600" />
+              </div>
+              <h4 className="text-slate-900 text-xs font-bold mb-1">Contract Execution</h4>
+              <p className="text-[11px] text-slate-500 leading-relaxed">
+                Individual project development contracts are governed by additional explicit Statements of Work (SOWs).
+              </p>
+            </div>
+          </div>
+
+          {/* Right Side Content Body */}
+          <div className="lg:col-span-8 space-y-12 bg-white border border-slate-200/60 rounded-3xl p-8 md:p-10 shadow-sm">
+            {/* 1. Acceptance of Terms */}
+            <div id="acceptance" className="scroll-mt-24">
+              <div className="flex items-center gap-2 mb-3">
+                <ShieldAlert className="w-5 h-5 text-amber-600" />
+                <h2 className="text-slate-900 font-bold text-lg m-0">1. Acceptance of Terms</h2>
+              </div>
+              <p className="text-xs leading-relaxed text-slate-600">
+                By viewing or utilizing the website of Built by Kunal, or signing quotation contracts generated by our team, you declare full compliance with these Terms of Service. If you disagree with any specific legal bounds, please exit our platform.
+              </p>
+            </div>
+
+            {/* 2. Scope of Services */}
+            <div id="services-scope" className="scroll-mt-24 border-t border-slate-100 pt-8">
+              <div className="flex items-center gap-2 mb-3">
+                <FileText className="w-5 h-5 text-amber-600" />
+                <h2 className="text-slate-900 font-bold text-lg m-0">2. Scope of Services</h2>
+              </div>
+              <p className="text-xs leading-relaxed text-slate-600">
+                Built by Kunal specializes in custom web development, mobile applications, SaaS platform development, data analytics architectures, cloud migration, and AI automation software. Scope definitions, targets, and delivery schedules will be formally managed in individual Statements of Work (SOWs).
+              </p>
+            </div>
+
+            {/* 3. Intellectual Property */}
+            <div id="intellectual-property" className="scroll-mt-24 border-t border-slate-100 pt-8">
+              <div className="flex items-center gap-2 mb-3">
+                <Award className="w-5 h-5 text-amber-600" />
+                <h2 className="text-slate-900 font-bold text-lg m-0">3. Intellectual Property</h2>
+              </div>
+              <p className="text-xs leading-relaxed text-slate-600">
+                Unless stated otherwise in individual contracts, Built by Kunal reserves all structural IP over our pre-existing code frameworks, library elements, and modules. Upon final project settlement, proprietary client code, custom layouts, and databases are assigned to the client.
+              </p>
+            </div>
+
+            {/* 4. User & Client Obligations */}
+            <div id="user-obligations" className="scroll-mt-24 border-t border-slate-100 pt-8">
+              <h2 className="text-slate-900 font-bold text-lg mb-3">4. User & Client Obligations</h2>
+              <p className="text-xs leading-relaxed text-slate-600">
+                Clients must provide required API access keys, asset files, and text details promptly. Any delays caused by third-party vendor configurations outside our team&apos;s reach are not the responsibility of Built by Kunal.
+              </p>
+            </div>
+
+            {/* 5. Invoicing & Payment Terms */}
+            <div id="payment-billing" className="scroll-mt-24 border-t border-slate-100 pt-8">
+              <h2 className="text-slate-900 font-bold text-lg mb-3">5. Invoicing & Payment Terms</h2>
+              <p className="text-xs leading-relaxed text-slate-600">
+                Payment milestones are structured based on task checkpoints. Invoices are issued with a Net-15 payment term. Late payments will generate a 1.5% interest rate fee per month of default.
+              </p>
+            </div>
+
+            {/* 6. Agreement Termination */}
+            <div id="termination" className="scroll-mt-24 border-t border-slate-100 pt-8">
+              <h2 className="text-slate-900 font-bold text-lg mb-3">6. Agreement Termination</h2>
+              <p className="text-xs leading-relaxed text-slate-600">
+                Either party may terminate active SOW agreements with a 30-day written notification window. Upon termination notice, all fees for development milestones reached up to the date of notice must be settled.
+              </p>
+            </div>
+
+            {/* 7. Limitations of Liability */}
+            <div id="liability-limits" className="scroll-mt-24 border-t border-slate-100 pt-8">
+              <h2 className="text-slate-900 font-bold text-lg mb-3">7. Limitations of Liability</h2>
+              <p className="text-xs leading-relaxed text-slate-600">
+                Built by Kunal is not liable for indirect, incidental, or special damages, including database loss, lost sales, or downtime incidents arising from server issues of hosting vendors like AWS or Azure.
+              </p>
+            </div>
+
+            {/* 8. Dispute Resolution */}
+            <div id="dispute-resolution" className="scroll-mt-24 border-t border-slate-100 pt-8">
+              <h2 className="text-slate-900 font-bold text-lg mb-3">8. Dispute Resolution</h2>
+              <p className="text-xs leading-relaxed text-slate-600">
+                Disputes arising from this agreement will be settled through arbitration under the laws of Ranchi, Jharkhand.
+              </p>
+            </div>
+
+            {/* 9. Technical Support & Inquiries */}
+            <div id="contact-support" className="scroll-mt-24 border-t border-slate-100 pt-8">
+              <h2 className="text-slate-900 font-bold text-lg mb-3">9. Technical Support & Inquiries</h2>
+              <p className="text-xs leading-relaxed text-slate-600 mb-4">
+                If you have questions regarding our legal boundaries, please contact:
+              </p>
+              <p className="text-xs text-slate-805 font-bold leading-relaxed">
+                Email: kunal@builtbykunal.online<br />
+                Office Address: Ranchi, Jharkhand, India, Jharkhand
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  );
+}

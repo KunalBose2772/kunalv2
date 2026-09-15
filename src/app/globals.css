@@ -1,0 +1,670 @@
+@import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;600;700;800;900&family=Playfair+Display:ital,wght@1,400;1,600&family=Sora:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap");
+@import "tailwindcss";
+
+/* ════════════════════════════════════════════════════════════════════════
+   BUILT BY KUNAL — Personal Portfolio & Freelance Platform
+   Brand: Clean + Technical + High-Performance
+   Inspired by: Linear, Vercel, Stripe, OpenAI
+   ════════════════════════════════════════════════════════════════════════ */
+
+:root {
+  /* ════════════════════════════════════════════════════════════════════════
+     SINGLE SOURCE OF TRUTH: GLOBAL ACCENT COLOR
+     Change this ONE color definition below to re-theme the entire website!
+     Default: Electric Light Blue / Cyan (#22D3EE)
+     ════════════════════════════════════════════════════════════════════════ */
+  --accent-global:          #22D3EE; /* Electric Light Blue / Cyan */
+  --accent-global-hover:    #06B6D4; /* Deep Cyan Hover */
+  --accent-global-light:    #67E8F9; /* Highlight tint */
+  --accent-global-dim:      rgba(34, 211, 238, 0.12); /* Badge / Tag tint */
+  --accent-global-glow:     rgba(34, 211, 238, 0.35); /* Glow effects */
+  --accent-global-rgb:      34, 211, 238; /* RGB channels */
+
+  /* ── Core Brand Colors (Dark Theme) ── */
+  --bg-primary:             #03050C;
+  --bg-surface:             #0A0E17;
+  --bg-elevated:            #111726;
+
+  --text-primary:           #FFFFFF;
+  --text-secondary:         #94A3B8;
+  --text-muted:             #64748B;
+  --text-faint:             #334155;
+
+  /* ── Core Brand Aliases (All sync to the single global color above) ── */
+  --accent-primary:         var(--accent-global);
+  --accent-primary-hover:   var(--accent-global-hover);
+  --accent-primary-dim:     var(--accent-global-dim);
+  --accent-primary-rgb:     var(--accent-global-rgb);
+  --accent-primary-dark-rgb: 8, 145, 178;
+
+  --accent-blue:            var(--accent-global);
+  --accent-blue-hover:      var(--accent-global-hover);
+  --accent-blue-dim:        var(--accent-global-dim);
+
+  --accent-cyan:            var(--accent-global);
+  --accent-cyan-hover:      var(--accent-global-hover);
+  --accent-cyan-dim:        var(--accent-global-dim);
+
+  /* Purple legacy aliases all wired to the global color */
+  --accent-purple:          var(--accent-global);
+  --accent-purple-hover:    var(--accent-global-hover);
+  --accent-purple-dim:      var(--accent-global-dim);
+  --accent-purple-rgb:      var(--accent-global-rgb);
+
+  --color-brand-accent:     var(--accent-global);
+  --color-brand-hover:      var(--accent-global-hover);
+  --color-brand-glow:       var(--accent-global-glow);
+
+  --border-subtle:          rgba(255,255,255,0.06);
+  --border-default:         rgba(255,255,255,0.08);
+  --border-emphasis:        rgba(var(--accent-global-rgb), 0.35);
+
+  /* Shadows */
+  --shadow-card:            0 10px 40px rgba(0, 0, 0, 0.45);
+  --shadow-hover:           0 20px 60px rgba(0, 0, 0, 0.65);
+  --shadow-blue:            0 0 40px rgba(var(--accent-global-rgb), 0.22);
+
+  /* â”€â”€ Spacing Tokens â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+  --section-pad-y: clamp(64px, 8vw, 96px);
+  --section-pad-y-sm: clamp(40px, 5vw, 64px);
+
+  /* â”€â”€ CRM light theme (preserved) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+  --crm-bg: #f7f8fb;
+  --crm-bg-elevated: #ffffff;
+  --crm-surface: #ffffff;
+  --crm-surface-hover: #f3f4f8;
+  --crm-surface-muted: #f9fafc;
+  --crm-border: #e6e8ed;
+  --crm-border-strong: #d4d7de;
+  --crm-border-faint: #eef0f3;
+  --crm-text: #18181b;
+  --crm-text-strong: #0a0a0c;
+  --crm-text-muted: #5b6370;
+  --crm-text-subtle: #8a8f99;
+  --crm-text-faint: #b3b8c1;
+  --crm-primary: #5b5bd6;
+  --crm-primary-hover: #4f4fc4;
+  --crm-success: #16a34a;
+  --crm-warning: #d97706;
+  --crm-danger: #dc2626;
+  --crm-info: #2563eb;
+  --crm-shadow-sm: 0 1px 2px 0 rgb(16 24 40 / 0.04);
+  --crm-shadow: 0 1px 3px 0 rgb(16 24 40 / 0.06), 0 1px 2px -1px rgb(16 24 40 / 0.04);
+  --crm-shadow-lg: 0 8px 24px -8px rgb(16 24 40 / 0.12), 0 4px 8px -2px rgb(16 24 40 / 0.04);
+  --crm-shadow-xl: 0 20px 50px -16px rgb(16 24 40 / 0.18), 0 12px 24px -6px rgb(16 24 40 / 0.06);
+}
+
+/* â”€â”€â”€ Base â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+html {
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  background: var(--bg-primary);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* â”€â”€â”€ Accessibility â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+:focus-visible {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+*:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* â”€â”€â”€ Typography â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Sora", sans-serif;
+  letter-spacing: -0.02em;
+}
+
+.font-sora {
+  font-family: "Sora", sans-serif;
+}
+
+/* Dark section context â€” white headings */
+.dark-section h1,
+.dark-section h2,
+.dark-section h3,
+.dark-section h4,
+.dark-section h5,
+.dark-section h6 {
+  color: #ffffff;
+}
+
+/* Light section context â€” slate headings */
+.light-section h1,
+.light-section h2,
+.light-section h3,
+.light-section h4,
+.light-section h5,
+.light-section h6 {
+  color: #0f172a;
+}
+
+/* Named heading styles (unified) */
+.ng-h1 {
+  font-family: "Sora", sans-serif;
+  font-size: clamp(40px, 6vw, 64px);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+  color: #ffffff;
+}
+
+.ng-h2 {
+  font-family: "Sora", sans-serif;
+  font-size: clamp(32px, 4vw, 48px);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.03em;
+  color: #ffffff;
+}
+
+.ng-h3 {
+  font-family: "Sora", sans-serif;
+  font-size: clamp(24px, 3vw, 36px);
+  font-weight: 600;
+  line-height: 1.3;
+  color: #ffffff;
+}
+
+.ng-h4 {
+  font-family: "Sora", sans-serif;
+  font-size: clamp(20px, 2.5vw, 28px);
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.ng-label {
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent-blue);
+}
+
+/* â”€â”€â”€ Layout â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* STANDARD: Always use .ng-container for consistent layout */
+.ng-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding-left: 32px;
+  padding-right: 32px;
+}
+
+.ng-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Section padding â€” always use these tokens for vertical rhythm */
+.ng-section {
+  padding-top: var(--section-pad-y);
+  padding-bottom: var(--section-pad-y);
+}
+
+.ng-section-sm {
+  padding-top: var(--section-pad-y-sm);
+  padding-bottom: var(--section-pad-y-sm);
+}
+
+@media (max-width: 768px) {
+  .ng-container {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  /* Mobile: reduced but still comfortable */
+  :root {
+    --section-pad-y: 48px;
+    --section-pad-y-sm: 32px;
+  }
+}
+
+/* â”€â”€â”€ Cards â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.ng-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: var(--shadow-card);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.ng-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+}
+
+/* Dark card (for use on dark backgrounds) */
+.ng-card-dark {
+  background: rgba(10, 10, 12, 0.60);
+  border: 1px solid var(--border-default);
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: var(--shadow-card);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.ng-card-dark:hover {
+  transform: translateY(-4px);
+  border-color: var(--border-emphasis);
+  box-shadow: var(--shadow-hover), var(--shadow-blue);
+}
+
+/* â”€â”€â”€ Buttons â€” Unified radius: 12px â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.ng-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--accent-blue);
+  color: #ffffff;
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  height: 48px;
+  padding: 0 24px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  white-space: nowrap;
+}
+
+.ng-btn-primary:hover {
+  background: var(--accent-blue-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(var(--accent-primary-rgb), 0.3);
+}
+
+.ng-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  color: #ffffff;
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  height: 48px;
+  padding: 0 24px;
+  border-radius: 12px;
+  border: 1px solid var(--accent-blue);
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  white-space: nowrap;
+}
+
+.ng-btn-secondary:hover {
+  background: var(--accent-blue-dim);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(var(--accent-primary-rgb), 0.15);
+}
+
+.ng-btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  color: var(--text-secondary);
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  height: 48px;
+  padding: 0 24px;
+  border-radius: 12px;
+  border: 1px solid var(--border-default);
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.ng-btn-ghost:hover {
+  color: #ffffff;
+  border-color: var(--border-emphasis);
+  background: var(--accent-blue-dim);
+}
+
+/* â”€â”€â”€ Inputs â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.ng-input {
+  width: 100%;
+  height: 48px;
+  padding: 0 16px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-radius: 12px;
+  color: var(--text-primary);
+  font-family: "Inter", sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  outline: none;
+}
+
+.ng-input::placeholder {
+  color: var(--text-muted);
+}
+
+.ng-input:focus {
+  border-color: var(--accent-blue);
+  box-shadow: 0 0 0 3px rgba(var(--accent-primary-rgb), 0.12);
+}
+
+.ng-textarea {
+  width: 100%;
+  padding: 14px 16px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-radius: 12px;
+  color: var(--text-primary);
+  font-family: "Inter", sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  outline: none;
+  resize: vertical;
+  min-height: 120px;
+}
+
+.ng-textarea::placeholder {
+  color: var(--text-muted);
+}
+
+.ng-textarea:focus {
+  border-color: var(--accent-blue);
+  box-shadow: 0 0 0 3px rgba(var(--accent-primary-rgb), 0.12);
+}
+
+/* â”€â”€â”€ Badge / Pill â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.ng-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border-radius: 100px;
+  border: 1px solid rgba(var(--accent-global-rgb), 0.25);
+  background: rgba(var(--accent-global-rgb), 0.08);
+  font-family: "Inter", sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--accent-global);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.ng-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent-global);
+  animation: ng-pulse 2s infinite;
+}
+
+/* â”€â”€â”€ Section Header Utility â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.ng-section-label {
+  font-family: "Inter", sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent-global);
+  margin-bottom: 16px;
+}
+
+/* â”€â”€â”€ Divider â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.ng-divider {
+  width: 48px;
+  height: 1px;
+  background: linear-gradient(90deg, var(--accent-blue), transparent);
+  margin: 20px 0;
+}
+
+/* â”€â”€â”€ Grid patterns (very subtle) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.ng-grid-bg {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+
+/* â”€â”€â”€ Section transition overlays â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* Creates smooth darkâ†’light transitions between sections */
+.ng-fade-down {
+  background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.3));
+}
+
+/* â”€â”€â”€ Keyframes â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+@keyframes ng-pulse {
+
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.6;
+    transform: scale(0.9);
+  }
+}
+
+@keyframes ng-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes ng-fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes ng-marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes marquee-rev {
+  to {
+    transform: translateX(50%);
+  }
+}
+
+@keyframes float-y {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-16px);
+  }
+}
+
+@keyframes float-slow {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes spin-slow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes blink {
+
+  0%,
+  100% {
+    opacity: 1
+  }
+
+  50% {
+    opacity: 0
+  }
+}
+
+
+/* â”€â”€â”€ Text selection â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+::selection {
+  background: rgba(var(--accent-primary-rgb), 0.35);
+  color: #ffffff;
+}
+
+.light-section ::selection,
+.crm-shell ::selection,
+.crm-shell *::selection {
+  background: var(--crm-primary, #5b5bd6);
+  color: #ffffff;
+}
+
+
+/* â”€â”€â”€ Scrollbar â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-surface);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.22);
+}
+
+/* â”€â”€â”€ Reduced motion â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* â”€â”€â”€ CRM shell scoping (preserved for CRM routes) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.crm-shell {
+  background: var(--crm-bg);
+  color: var(--crm-text);
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+
+.crm-shell::-webkit-scrollbar {
+  display: none !important;
+}
+
+.crm-shell * {
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+
+.crm-shell *::-webkit-scrollbar {
+  display: none !important;
+}
+
+.crm-shell input,
+.crm-shell select,
+.crm-shell textarea {
+  color: var(--crm-text);
+}
+
+.crm-shell input::placeholder,
+.crm-shell textarea::placeholder {
+  color: var(--crm-text-faint);
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.font-heading {
+  font-family: var(--font-bricolage), var(--font-sora), sans-serif !important;
+}
+
+.font-serif {
+  font-family: var(--font-playfair), serif !important;
+}
+
+.font-sans {
+  font-family: var(--font-inter), sans-serif !important;
+}
+
+.font-sora {
+  font-family: var(--font-sora), sans-serif !important;
+}
+
+.hero-grid {
+  background-size: 80px 80px;
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  mask-image: linear-gradient(to right, rgba(0, 0, 0, 1) 10%, rgba(0, 0, 0, 0) 80%);
+  -webkit-mask-image: linear-gradient(to right, rgba(0, 0, 0, 1) 10%, rgba(0, 0, 0, 0) 80%);
+  opacity: 0.03;
+}
+
+.hero-blue-glow {
+  background: radial-gradient(circle at 50% 50%, rgba(var(--accent-global-rgb), 0.18) 0%, rgba(6, 18, 32, 0.75) 45%, #03050c 80%), #03050c;
+}
